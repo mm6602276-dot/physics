@@ -1,0 +1,1430 @@
+<!DOCTYPE html>
+<html lang="sq">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Physics Nexus 2077</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+scroll-behavior:smooth;
+}
+
+body{
+font-family:Arial,sans-serif;
+background:#050816;
+color:white;
+overflow-x:hidden;
+}
+
+body::before{
+content:"";
+position:fixed;
+inset:0;
+z-index:-1;
+background:
+radial-gradient(circle at 20% 20%,rgba(0,255,255,.15),transparent 25%),
+radial-gradient(circle at 80% 30%,rgba(255,0,255,.15),transparent 25%),
+radial-gradient(circle at 50% 80%,rgba(0,150,255,.15),transparent 25%);
+}
+
+header{
+position:fixed;
+top:0;
+width:100%;
+padding:15px;
+background:rgba(0,0,0,.85);
+backdrop-filter:blur(10px);
+border-bottom:1px solid cyan;
+z-index:1000;
+}
+
+header h1{
+font-family:Orbitron;
+text-align:center;
+color:cyan;
+text-shadow:0 0 20px cyan;
+}
+
+nav{
+display:flex;
+justify-content:center;
+gap:10px;
+flex-wrap:wrap;
+margin-top:10px;
+}
+
+nav a{
+text-decoration:none;
+color:white;
+padding:8px 14px;
+border:1px solid cyan;
+border-radius:20px;
+transition:.3s;
+}
+
+nav a:hover{
+background:cyan;
+color:black;
+}
+
+.hero{
+min-height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+padding:120px 20px 40px;
+}
+
+.hero h2{
+font-family:Orbitron;
+font-size:4rem;
+color:cyan;
+text-shadow:0 0 30px cyan;
+}
+
+.hero p{
+max-width:1000px;
+font-size:1.15rem;
+line-height:1.9;
+margin-top:20px;
+}
+
+#scene{
+width:100%;
+height:500px;
+margin-top:30px;
+}
+
+.physics-section{
+max-width:1400px;
+margin:70px auto;
+padding:35px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:40px;
+background:rgba(255,255,255,.05);
+border:1px solid rgba(0,255,255,.3);
+border-radius:20px;
+backdrop-filter:blur(10px);
+}
+
+.physics-text{
+flex:1;
+}
+
+.physics-text h2{
+font-family:Orbitron;
+color:cyan;
+margin-bottom:20px;
+}
+
+.physics-text p{
+line-height:1.9;
+margin-bottom:15px;
+}
+
+.formula{
+margin-top:15px;
+padding:15px;
+background:rgba(0,255,255,.1);
+border-left:4px solid cyan;
+font-family:Orbitron;
+}
+
+.mini-scene{
+width:420px;
+height:280px;
+min-width:420px;
+border-radius:20px;
+overflow:hidden;
+border:1px solid rgba(0,255,255,.3);
+}
+
+@media(max-width:950px){
+
+.physics-section{
+flex-direction:column;
+}
+
+.mini-scene{
+width:100%;
+min-width:100%;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+<h1>⚛ PHYSICS NEXUS 2026</h1>
+
+<nav>
+<a href="#drita">Drita</a>
+<a href="#faraday">Faraday</a>
+<a href="#optika">Optika</a>
+<a href="#lentet">Lentet</a>
+<a href="#relativiteti">Relativiteti</a>
+<a href="#atomi">Atomi</a>
+<a href="#nukleare">Nukleare</a>
+<a href="#molekulat">Molekulat</a>
+<a href="#kuantike">Kuantike</a>
+<a href="#astro">Astrofizika</a>
+</nav>
+
+</header>
+
+<section class="hero">
+
+<h2>FIZIKA E SË ARDHMES</h2>
+
+<p>
+Laborator virtual interaktiv ku konceptet e fizikës
+shpjegohen me animacione 3D.
+</p>
+
+<div id="scene"></div>
+
+</section>
+
+<section id="drita" class="physics-section">
+<div class="physics-text">
+<h2>💡 Drita</h2>
+<p>Drita është një formë e rrezatimit elektromagnetik që përhapet në hapësirë me shpejtësinë rreth 300 000 km/s në vakum.
+    Ajo është burimi kryesor i informacionit që marrim nga bota përreth dhe na lejon të shohim objektet. Drita shfaq një natyrë të dyfishtë,
+    duke u sjellë si valë dhe si grimcë (foton).
+    Fenomene si reflektimi, thyerja, interferenca dhe difraksioni shpjegojnë shumë nga sjelljet e saj në natyrë dhe në teknologji.</p>
+<div class="formula">E = h·f</div>
+</div>
+<div id="lightScene" class="mini-scene"></div>
+</section>
+
+<section id="faraday" class="physics-section">
+<div class="physics-text">
+<h2>🧲 Ligji i Faradeit</h2>
+<p>Ligji i Faradeit për induksionin elektromagnetik tregon se një ndryshim i fluksit magnetik në një qark elektrik krijon një forcë elektromotore (tension).
+    Ky zbulim i Michael Faraday-t është baza e funksionimit të gjeneratorëve,
+    transformatorëve dhe shumë pajisjeve elektrike moderne. Sa më shpejt të ndryshojë fusha magnetike, aq më i madh është tensioni i induktuar.</p>
+<div class="formula">ε = -dΦ/dt</div>
+</div>
+<div id="faradayScene" class="mini-scene"></div>
+</section>
+
+<section id="optika" class="physics-section">
+<div class="physics-text">
+<h2>🔍 Optika</h2>
+<p>Optika është dega e fizikës që studion dritën dhe ndërveprimin e saj me materien.
+    Ajo merret me fenomene si reflektimi, thyerja, polarizimi dhe shpërndarja e dritës. Optika ka luajtur një rol të madh në
+    zhvillimin e instrumenteve si teleskopët, mikroskopët, kamerat dhe fibrat optike, të cilat përdoren gjerësisht në shkencë dhe komunikim.</p>
+<div class="formula">θᵢ = θᵣ</div>
+</div>
+<div id="opticsScene" class="mini-scene"></div>
+</section>
+
+<section id="lentet" class="physics-section">
+<div class="physics-text">
+<h2>🔎 Lentet</h2>
+<p>Lentet janë elemente optike të tejdukshme që ndryshojnë drejtimin e rrezeve të dritës përmes thyerjes.
+    Lentet konverguese i mbledhin rrezet në një pikë fokale, ndërsa lentet diverguese i shpërndajnë ato.
+    Ato përdoren në syze, aparate fotografike, mikroskopë, teleskopë dhe shumë pajisje të tjera optike.
+    Lentet janë thelbësore për korrigjimin e problemeve të shikimit dhe për zmadhimin e objekteve.</p>
+<div class="formula">1/f = 1/do + 1/di</div>
+</div>
+<div id="lensScene" class="mini-scene"></div>
+</section>
+
+<section id="relativiteti" class="physics-section">
+<div class="physics-text">
+<h2>🚀 Relativiteti</h2>
+<p>Teoria e relativitetit, e zhvilluar nga Albert Einstein, ndryshoi mënyrën se si e kuptojmë hapësirën, kohën dhe gravitetin.
+    Relativiteti special tregon se koha dhe gjatësia varen nga shpejtësia e lëvizjes së vëzhguesit, ndërsa relativiteti i përgjithshëm
+    përshkruan gravitetin si lakim të hapësirë-kohës nga masa dhe energjia.
+    Kjo teori është konfirmuar nga shumë eksperimente dhe përdoret në teknologji si sistemi GPS.</p>
+<div class="formula">E = mc²</div>
+</div>
+<div id="relativityScene" class="mini-scene"></div>
+</section>
+
+<section id="atomi" class="physics-section">
+<div class="physics-text">
+<h2>⚛ Teoria Kuantike e Atomit</h2>
+<p>Teoria kuantike e atomit shpjegon strukturën e atomit dhe sjelljen e elektroneve.
+    Sipas saj, elektronet nuk lëvizin në orbita të sakta rreth bërthamës, por ndodhen në rajone probabiliteti të quajtura orbitale.
+    Kjo teori shpjegon spektrat atomikë, vetitë e elementeve kimike dhe shumë fenomene të fizikës moderne.
+    Ajo është baza e kimisë moderne dhe e teknologjive elektronike.</p>
+<div class="formula">E = h·f</div>
+</div>
+<div id="atomScene" class="mini-scene"></div>
+</section>
+<section id="nukleare" class="physics-section">
+
+<div class="physics-text">
+
+<h2>☢ Fizika Nukleare</h2>
+
+<p>
+Fizika nukleare studion bërthamën e atomit, përbërjen e saj dhe proceset që ndodhin brenda saj.
+Ajo merret me radioaktivitetin, fisjonin dhe fuzionin bërthamor. Energjia e çliruar nga reaksionet bërthamore
+është shumë e madhe dhe përdoret si në centralet bërthamore për prodhimin e energjisë,
+ashtu edhe në fusha si mjekësia dhe kërkimi shkencor.
+</p>
+
+<div class="formula">
+E = mc²
+</div>
+
+</div>
+
+<div id="nuclearScene" class="mini-scene"></div>
+
+</section>
+
+
+<section id="molekulat" class="physics-section">
+
+<div class="physics-text">
+
+<h2>🧪 Molekulat</h2>
+
+<p>
+Molekulat formohen kur dy ose më shumë atome lidhen së bashku përmes lidhjeve kimike.
+Ato përbëjnë bazën e të gjitha substancave që na rrethojnë. Struktura dhe mënyra e lidhjes së atomeve përcaktojnë vetitë
+fizike dhe kimike të materialeve.
+Studimi i molekulave ndihmon në kuptimin e proceseve biologjike,
+reaksioneve kimike dhe zhvillimit të materialeve të reja.
+</p>
+
+<div class="formula">
+H₂ + O → H₂O
+</div>
+
+</div>
+
+<div id="moleculeScene" class="mini-scene"></div>
+
+</section>
+
+
+<section id="kuantike" class="physics-section">
+
+<div class="physics-text">
+
+<h2>🎲 Mekanika Kuantike</h2>
+
+<p>
+Mekanika kuantike është teoria që përshkruan sjelljen e grimcave në nivel atomik dhe nënatomik.
+Ajo prezanton koncepte të pazakonta si dualiteti valë-grimcë, tunelimi kuantik dhe parimi i pasigurisë së Heisenbergut.
+Edhe pse duket kundër intuitës së përditshme,
+mekanika kuantike është një nga teoritë më të sakta në shkencë dhe ka mundësuar zhvillimin e transistorëve, lazerëve dhe kompjuterëve kuantikë.
+</p>
+
+<div class="formula">
+Δx · Δp ≥ h/4π
+</div>
+
+</div>
+
+<div id="quantumScene" class="mini-scene"></div>
+
+</section>
+
+
+<section id="astro" class="physics-section">
+
+<div class="physics-text">
+
+<h2>🌌 Astrofizika dhe Kozmologjia</h2>
+
+<p>
+Astrofizika studion objektet dhe fenomenet qiellore si yjet, galaktikat, vrimat e zeza dhe planetët,
+duke përdorur ligjet e fizikës për të shpjeguar sjelljen e tyre. Kozmologjia merret me origjinën, strukturën dhe evolucionin e universit në tërësi.
+Teoria më e pranuar është ajo e Big Bang-ut, sipas së cilës universi filloi rreth 13.8 miliardë vjet më parë dhe vazhdon të zgjerohet edhe sot.
+</p>
+
+<div class="formula">
+v = H₀ · d
+</div>
+
+</div>
+
+<div id="astroScene" class="mini-scene"></div>
+
+</section>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+<script>
+/* =====================================
+   HERO SCENE
+===================================== */
+
+const heroContainer =
+document.getElementById("scene");
+
+const heroScene =
+new THREE.Scene();
+
+const heroCamera =
+new THREE.PerspectiveCamera(
+75,
+heroContainer.clientWidth /
+heroContainer.clientHeight,
+0.1,
+1000
+);
+
+const heroRenderer =
+new THREE.WebGLRenderer({
+alpha:true,
+antialias:true
+});
+
+heroRenderer.setSize(
+heroContainer.clientWidth,
+heroContainer.clientHeight
+);
+
+heroContainer.appendChild(
+heroRenderer.domElement
+);
+
+const planet =
+new THREE.Mesh(
+new THREE.SphereGeometry(
+2,
+64,
+64
+),
+new THREE.MeshBasicMaterial({
+color:0x00ffff,
+wireframe:true
+})
+);
+
+heroScene.add(planet);
+
+const ring1 =
+new THREE.Mesh(
+new THREE.TorusGeometry(
+3.2,
+0.05,
+16,
+100
+),
+new THREE.MeshBasicMaterial({
+color:0xff00ff
+})
+);
+
+heroScene.add(ring1);
+
+heroCamera.position.z=7;
+
+function animateHero(){
+
+requestAnimationFrame(
+animateHero
+);
+
+planet.rotation.y+=0.005;
+
+ring1.rotation.x+=0.01;
+ring1.rotation.y+=0.005;
+
+heroRenderer.render(
+heroScene,
+heroCamera
+);
+
+}
+
+animateHero();
+
+
+/* =====================================
+   DRITA - LLAMPA
+===================================== */
+
+const lightContainer =
+document.getElementById("lightScene");
+
+const lightScene =
+new THREE.Scene();
+
+const lightCamera =
+new THREE.PerspectiveCamera(
+75,
+lightContainer.clientWidth /
+lightContainer.clientHeight,
+0.1,
+1000
+);
+
+const lightRenderer =
+new THREE.WebGLRenderer({
+alpha:true,
+antialias:true
+});
+
+lightRenderer.setSize(
+lightContainer.clientWidth,
+lightContainer.clientHeight
+);
+
+lightContainer.appendChild(
+lightRenderer.domElement
+);
+
+const bulb =
+new THREE.Mesh(
+new THREE.SphereGeometry(
+0.8,
+32,
+32
+),
+new THREE.MeshBasicMaterial({
+color:0xffff00
+})
+);
+
+lightScene.add(bulb);
+
+const rays=[];
+
+for(let i=0;i<8;i++){
+
+const ray =
+new THREE.Mesh(
+new THREE.CylinderGeometry(
+0.03,
+0.03,
+4,
+8
+),
+new THREE.MeshBasicMaterial({
+color:0xffff66
+})
+);
+
+ray.rotation.z =
+Math.PI/2;
+
+ray.rotation.y =
+(i*Math.PI)/4;
+
+lightScene.add(ray);
+
+rays.push(ray);
+
+}
+
+lightCamera.position.z=6;
+
+function animateLight(){
+
+requestAnimationFrame(
+animateLight
+);
+
+bulb.rotation.y+=0.02;
+
+rays.forEach(ray=>{
+ray.rotation.x+=0.01;
+});
+
+lightRenderer.render(
+lightScene,
+lightCamera
+);
+
+}
+
+animateLight();
+
+
+/* =====================================
+   FARADAY
+===================================== */
+
+const faradayContainer =
+document.getElementById(
+"faradayScene"
+);
+
+const faradayScene =
+new THREE.Scene();
+
+const faradayCamera =
+new THREE.PerspectiveCamera(
+75,
+faradayContainer.clientWidth /
+faradayContainer.clientHeight,
+0.1,
+1000
+);
+
+const faradayRenderer =
+new THREE.WebGLRenderer({
+alpha:true,
+antialias:true
+});
+
+faradayRenderer.setSize(
+faradayContainer.clientWidth,
+faradayContainer.clientHeight
+);
+
+faradayContainer.appendChild(
+faradayRenderer.domElement
+);
+
+const coil =
+new THREE.Mesh(
+new THREE.TorusGeometry(
+1.5,
+0.25,
+32,
+100
+),
+new THREE.MeshBasicMaterial({
+color:0xffaa00,
+wireframe:true
+})
+);
+
+faradayScene.add(coil);
+
+const magnet =
+new THREE.Mesh(
+new THREE.BoxGeometry(
+0.8,
+2,
+0.8
+),
+new THREE.MeshBasicMaterial({
+color:0xff0000
+})
+);
+
+faradayScene.add(magnet);
+
+faradayCamera.position.z=6;
+
+let dir=1;
+
+function animateFaraday(){
+
+requestAnimationFrame(
+animateFaraday
+);
+
+magnet.position.x +=
+0.03 * dir;
+
+if(magnet.position.x>2)
+dir=-1;
+
+if(magnet.position.x<-2)
+dir=1;
+
+coil.rotation.y +=0.01;
+
+faradayRenderer.render(
+faradayScene,
+faradayCamera
+);
+
+}
+
+animateFaraday();
+
+
+/* =====================================
+   OPTIKA
+===================================== */
+
+const opticsContainer =
+document.getElementById(
+"opticsScene"
+);
+
+const opticsScene =
+new THREE.Scene();
+
+const opticsCamera =
+new THREE.PerspectiveCamera(
+75,
+opticsContainer.clientWidth /
+opticsContainer.clientHeight,
+0.1,
+1000
+);
+
+const opticsRenderer =
+new THREE.WebGLRenderer({
+alpha:true,
+antialias:true
+});
+
+opticsRenderer.setSize(
+opticsContainer.clientWidth,
+opticsContainer.clientHeight
+);
+
+opticsContainer.appendChild(
+opticsRenderer.domElement
+);
+
+const mirror =
+new THREE.Mesh(
+new THREE.BoxGeometry(
+0.2,
+3,
+0.2
+),
+new THREE.MeshBasicMaterial({
+color:0xffffff
+})
+);
+
+mirror.position.x=1;
+
+opticsScene.add(mirror);
+
+const laserIn =
+new THREE.Mesh(
+new THREE.CylinderGeometry(
+0.04,
+0.04,
+2.5,
+8
+),
+new THREE.MeshBasicMaterial({
+color:0xff0000
+})
+);
+
+laserIn.rotation.z =
+Math.PI/4;
+
+laserIn.position.x=-1.2;
+laserIn.position.y=0.8;
+
+opticsScene.add(laserIn);
+
+const laserOut =
+new THREE.Mesh(
+new THREE.CylinderGeometry(
+0.04,
+0.04,
+2.5,
+8
+),
+new THREE.MeshBasicMaterial({
+color:0x00ffff
+})
+);
+
+laserOut.rotation.z =
+-Math.PI/4;
+
+laserOut.position.x=2.2;
+laserOut.position.y=0.8;
+
+opticsScene.add(laserOut);
+
+opticsCamera.position.z=5;
+
+function animateOptics(){
+
+requestAnimationFrame(
+animateOptics
+);
+
+laserIn.position.y =
+0.8 + Math.sin(Date.now()*0.003)*0.15;
+
+laserOut.position.y =
+laserIn.position.y;
+
+opticsRenderer.render(
+opticsScene,
+opticsCamera
+);
+
+}
+
+animateOptics();
+
+
+/* =====================================
+   LENTET
+===================================== */
+
+const lensContainer =
+document.getElementById(
+"lensScene"
+);
+
+const lensScene =
+new THREE.Scene();
+
+const lensCamera =
+new THREE.PerspectiveCamera(
+75,
+lensContainer.clientWidth /
+lensContainer.clientHeight,
+0.1,
+1000
+);
+
+const lensRenderer =
+new THREE.WebGLRenderer({
+alpha:true,
+antialias:true
+});
+
+lensRenderer.setSize(
+lensContainer.clientWidth,
+lensContainer.clientHeight
+);
+
+lensContainer.appendChild(
+lensRenderer.domElement
+);
+
+const lens =
+new THREE.Mesh(
+new THREE.SphereGeometry(
+1,
+32,
+32
+),
+new THREE.MeshBasicMaterial({
+color:0x00ffff,
+wireframe:true
+})
+);
+
+lens.scale.x=0.5;
+
+lensScene.add(lens);
+
+lensCamera.position.z=6;
+
+const lensRays=[];
+
+for(let i=-2;i<=2;i++){
+
+const ray =
+new THREE.Mesh(
+new THREE.CylinderGeometry(
+0.02,
+0.02,
+4,
+8
+),
+new THREE.MeshBasicMaterial({
+color:0xffff00
+})
+);
+
+ray.rotation.z=
+Math.PI/2;
+
+ray.position.y=
+i*0.35;
+
+ray.position.x=
+-2;
+
+lensScene.add(ray);
+
+lensRays.push(ray);
+
+}
+
+function animateLens(){
+
+requestAnimationFrame(
+animateLens
+);
+
+lensRays.forEach(ray=>{
+
+ray.position.x+=0.04;
+
+if(ray.position.x>2)
+ray.position.x=-2;
+
+});
+
+lens.rotation.y+=0.01;
+
+lensRenderer.render(
+lensScene,
+lensCamera
+);
+
+}
+
+animateLens();
+/* =====================================
+   RELATIVITETI
+===================================== */
+
+const relativityContainer =
+document.getElementById(
+"relativityScene"
+);
+
+const relativityScene =
+new THREE.Scene();
+
+const relativityCamera =
+new THREE.PerspectiveCamera(
+75,
+relativityContainer.clientWidth/
+relativityContainer.clientHeight,
+0.1,
+1000
+);
+
+const relativityRenderer =
+new THREE.WebGLRenderer({
+alpha:true,
+antialias:true
+});
+
+relativityRenderer.setSize(
+relativityContainer.clientWidth,
+relativityContainer.clientHeight
+);
+
+relativityContainer.appendChild(
+relativityRenderer.domElement
+);
+
+const blackHole =
+new THREE.Mesh(
+new THREE.SphereGeometry(
+0.7,
+32,
+32
+),
+new THREE.MeshBasicMaterial({
+color:0xff6600
+})
+);
+
+relativityScene.add(
+blackHole
+);
+
+const gravityRing =
+new THREE.Mesh(
+new THREE.TorusGeometry(
+1.8,
+0.03,
+16,
+100
+),
+new THREE.MeshBasicMaterial({
+color:0x00ffff
+})
+);
+
+relativityScene.add(
+gravityRing
+);
+
+relativityCamera.position.z=5;
+
+function animateRelativity(){
+
+requestAnimationFrame(
+animateRelativity
+);
+
+gravityRing.rotation.x+=0.02;
+gravityRing.rotation.y+=0.01;
+
+relativityRenderer.render(
+relativityScene,
+relativityCamera
+);
+
+}
+
+animateRelativity();
+
+
+/* =====================================
+   ATOMI
+===================================== */
+
+const atomContainer =
+document.getElementById(
+"atomScene"
+);
+
+const atomScene =
+new THREE.Scene();
+
+const atomCamera =
+new THREE.PerspectiveCamera(
+75,
+atomContainer.clientWidth/
+atomContainer.clientHeight,
+0.1,
+1000
+);
+
+const atomRenderer =
+new THREE.WebGLRenderer({
+alpha:true,
+antialias:true
+});
+
+atomRenderer.setSize(
+atomContainer.clientWidth,
+atomContainer.clientHeight
+);
+
+atomContainer.appendChild(
+atomRenderer.domElement
+);
+
+const nucleus =
+new THREE.Mesh(
+new THREE.SphereGeometry(
+0.5,
+32,
+32
+),
+new THREE.MeshBasicMaterial({
+color:0xff0000
+})
+);
+
+atomScene.add(nucleus);
+
+const orbit =
+new THREE.Mesh(
+new THREE.TorusGeometry(
+1.5,
+0.02,
+16,
+100
+),
+new THREE.MeshBasicMaterial({
+color:0xffffff
+})
+);
+
+orbit.rotation.x=
+Math.PI/2;
+
+atomScene.add(orbit);
+
+const electron =
+new THREE.Mesh(
+new THREE.SphereGeometry(
+0.15,
+16,
+16
+),
+new THREE.MeshBasicMaterial({
+color:0x00ffff
+})
+);
+
+atomScene.add(electron);
+
+atomCamera.position.z=5;
+
+let atomAngle=0;
+
+function animateAtom(){
+
+requestAnimationFrame(
+animateAtom
+);
+
+atomAngle+=0.03;
+
+electron.position.x=
+Math.cos(atomAngle)*1.5;
+
+electron.position.y=
+Math.sin(atomAngle)*1.5;
+
+atomRenderer.render(
+atomScene,
+atomCamera
+);
+
+}
+
+animateAtom();
+
+
+/* =====================================
+   NUKLEARE
+===================================== */
+
+const nuclearContainer =
+document.getElementById(
+"nuclearScene"
+);
+
+const nuclearScene =
+new THREE.Scene();
+
+const nuclearCamera =
+new THREE.PerspectiveCamera(
+75,
+nuclearContainer.clientWidth/
+nuclearContainer.clientHeight,
+0.1,
+1000
+);
+
+const nuclearRenderer =
+new THREE.WebGLRenderer({
+alpha:true,
+antialias:true
+});
+
+nuclearRenderer.setSize(
+nuclearContainer.clientWidth,
+nuclearContainer.clientHeight
+);
+
+nuclearContainer.appendChild(
+nuclearRenderer.domElement
+);
+
+const nucleusCore =
+new THREE.Mesh(
+new THREE.SphereGeometry(
+0.7,
+32,
+32
+),
+new THREE.MeshBasicMaterial({
+color:0x00aaff
+})
+);
+
+nuclearScene.add(
+nucleusCore
+);
+
+nuclearCamera.position.z=4;
+
+function animateNuclear(){
+
+requestAnimationFrame(
+animateNuclear
+);
+
+nucleusCore.scale.set(
+1+Math.sin(Date.now()*0.005)*0.2,
+1+Math.sin(Date.now()*0.005)*0.2,
+1+Math.sin(Date.now()*0.005)*0.2
+);
+
+nuclearRenderer.render(
+nuclearScene,
+nuclearCamera
+);
+
+}
+
+animateNuclear();
+
+
+/* =====================================
+   MOLEKULAT
+===================================== */
+
+const moleculeContainer =
+document.getElementById(
+"moleculeScene"
+);
+
+const moleculeScene =
+new THREE.Scene();
+
+const moleculeCamera =
+new THREE.PerspectiveCamera(
+75,
+moleculeContainer.clientWidth/
+moleculeContainer.clientHeight,
+0.1,
+1000
+);
+
+const moleculeRenderer =
+new THREE.WebGLRenderer({
+alpha:true,
+antialias:true
+});
+
+moleculeRenderer.setSize(
+moleculeContainer.clientWidth,
+moleculeContainer.clientHeight
+);
+
+moleculeContainer.appendChild(
+moleculeRenderer.domElement
+);
+
+const atom1 =
+new THREE.Mesh(
+new THREE.SphereGeometry(
+0.5,
+32,
+32
+),
+new THREE.MeshBasicMaterial({
+color:0xff0000
+})
+);
+
+atom1.position.x=-1;
+
+const atom2 =
+new THREE.Mesh(
+new THREE.SphereGeometry(
+0.5,
+32,
+32
+),
+new THREE.MeshBasicMaterial({
+color:0x00ffff
+})
+);
+
+atom2.position.x=1;
+
+moleculeScene.add(atom1);
+moleculeScene.add(atom2);
+
+moleculeCamera.position.z=5;
+
+function animateMolecule(){
+
+requestAnimationFrame(
+animateMolecule
+);
+
+atom1.rotation.y+=0.02;
+atom2.rotation.y+=0.02;
+
+moleculeRenderer.render(
+moleculeScene,
+moleculeCamera
+);
+
+}
+
+animateMolecule();
+
+
+/* =====================================
+   KUANTIKE
+===================================== */
+
+const quantumContainer =
+document.getElementById(
+"quantumScene"
+);
+
+const quantumScene =
+new THREE.Scene();
+
+const quantumCamera =
+new THREE.PerspectiveCamera(
+75,
+quantumContainer.clientWidth/
+quantumContainer.clientHeight,
+0.1,
+1000
+);
+
+const quantumRenderer =
+new THREE.WebGLRenderer({
+alpha:true,
+antialias:true
+});
+
+quantumRenderer.setSize(
+quantumContainer.clientWidth,
+quantumContainer.clientHeight
+);
+
+quantumContainer.appendChild(
+quantumRenderer.domElement
+);
+
+const quantumParticle =
+new THREE.Mesh(
+new THREE.SphereGeometry(
+0.4,
+32,
+32
+),
+new THREE.MeshBasicMaterial({
+color:0xaa00ff
+})
+);
+
+quantumScene.add(
+quantumParticle
+);
+
+quantumCamera.position.z=4;
+
+function animateQuantum(){
+
+requestAnimationFrame(
+animateQuantum
+);
+
+quantumParticle.position.x =
+Math.sin(Date.now()*0.003)*1.5;
+
+quantumParticle.position.y =
+Math.cos(Date.now()*0.002)*1;
+
+quantumRenderer.render(
+quantumScene,
+quantumCamera
+);
+
+}
+
+animateQuantum();
+
+
+/* =====================================
+   ASTROFIZIKA
+===================================== */
+
+const astroContainer =
+document.getElementById(
+"astroScene"
+);
+
+const astroScene =
+new THREE.Scene();
+
+const astroCamera =
+new THREE.PerspectiveCamera(
+75,
+astroContainer.clientWidth/
+astroContainer.clientHeight,
+0.1,
+1000
+);
+
+const astroRenderer =
+new THREE.WebGLRenderer({
+alpha:true,
+antialias:true
+});
+
+astroRenderer.setSize(
+astroContainer.clientWidth,
+astroContainer.clientHeight
+);
+
+astroContainer.appendChild(
+astroRenderer.domElement
+);
+
+const star =
+new THREE.Mesh(
+new THREE.SphereGeometry(
+1,
+32,
+32
+),
+new THREE.MeshBasicMaterial({
+color:0xffff66
+})
+);
+
+astroScene.add(star);
+
+astroCamera.position.z=4;
+
+function animateAstro(){
+
+requestAnimationFrame(
+animateAstro
+);
+
+star.rotation.y+=0.01;
+
+astroRenderer.render(
+astroScene,
+astroCamera
+);
+
+}
+
+animateAstro();
+
+
+/* =====================================
+   RESIZE
+===================================== */
+
+window.addEventListener(
+"resize",
+()=>{
+
+heroCamera.aspect=
+heroContainer.clientWidth/
+heroContainer.clientHeight;
+heroCamera.updateProjectionMatrix();
+heroRenderer.setSize(
+heroContainer.clientWidth,
+heroContainer.clientHeight
+);
+
+});
+</script>
+
+<footer
+style="
+text-align:center;
+padding:50px;
+color:#888;
+"
+>
+
+Physics Nexus 2077 • Laborator Virtual i Fizikës
+
+</footer>
+
+</body>
+</html>
